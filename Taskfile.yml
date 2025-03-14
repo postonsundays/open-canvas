@@ -1,0 +1,42 @@
+version: '3'
+
+tasks:
+  install:
+    desc: Install all dependencies
+    cmds:
+      - yarn install
+
+  build:
+    desc: Build all packages and applications
+    deps: [install]
+    cmds:
+      - yarn build
+
+  start-agents:
+    desc: Start the LangGraph agents server
+    dir: apps/agents
+    cmds:
+      - yarn dev
+
+  start-web:
+    desc: Start the web application
+    dir: apps/web
+    env:
+      PORT: "3456"
+    cmds:
+      - yarn dev
+
+  dev:
+    desc: Run both the agents and web servers
+    cmds:
+      - task: start-agents
+      - task: start-web
+
+  clean:
+    desc: Clean build artifacts and dependencies
+    cmds:
+      - rm -rf node_modules
+      - rm -rf apps/*/node_modules
+      - rm -rf packages/*/node_modules
+      - rm -rf apps/*/dist
+      - rm -rf packages/*/dist 

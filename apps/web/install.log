@@ -1,0 +1,55 @@
+# Open Canvas Installation Log
+
+## Environment Setup
+- Created .env file with required configuration
+- Set custom port to 3456 to avoid conflicts
+- Configured feature flags for available models
+- Added placeholders for Supabase authentication keys
+
+## Task Management
+- Created Taskfile.yml for common development tasks:
+  - install: Install dependencies
+  - dev:server: Start LangGraph server
+  - dev:client: Start Next.js server
+  - dev: Start both servers in parallel
+  - build: Build the application
+  - lint: Run linting
+  - format: Format code
+  - clean: Clean build artifacts
+  - rebuild: Full rebuild process
+
+## Required External Services
+1. Supabase
+   - Required for authentication
+   - Need to create project and configure:
+     - Project URL
+     - Anon public key
+     - Email provider
+     - (Optional) GitHub/Google authentication
+
+2. LangGraph
+   - Required for running the agent server
+   - Running on port 54367
+
+3. LLM APIs (at least one required)
+   - OpenAI (enabled)
+   - Anthropic (enabled)
+   - Others available but disabled by default:
+     - Fireworks
+     - Google Gemini
+     - Azure OpenAI
+     - Ollama
+     - Groq
+
+## Next Steps
+1. Set up Supabase project and add credentials to .env
+2. Install dependencies with `yarn install`
+3. Start development servers:
+   - LangGraph server: `task dev:server`
+   - Next.js server: `task dev:client`
+4. Access application at http://localhost:3456
+
+## Notes
+- Application requires both LangGraph server and Next.js server to be running
+- Custom port (3456) used to avoid conflicts with other services
+- Some features require additional API keys (OpenAI, Anthropic, etc.) 

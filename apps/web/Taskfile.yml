@@ -1,0 +1,51 @@
+version: '3'
+
+tasks:
+  install:
+    desc: Install dependencies
+    cmds:
+      - yarn install
+
+  dev:server:
+    desc: Start the LangGraph development server
+    cmds:
+      - npx @langchain/langgraph-cli dev --port 54367
+
+  dev:fs:
+    desc: Start the Next.js development server
+    cmds:
+      - task dev:server & task dev
+
+  dev:
+    desc: Start both servers in parallel
+    cmds:
+      - yarn dev --port 3398
+
+  build:
+    desc: Build the application
+    cmds:
+      - yarn build
+
+  lint:
+    desc: Run linting
+    cmds:
+      - yarn lint
+
+  format:
+    desc: Format code
+    cmds:
+      - yarn format
+
+  clean:
+    desc: Clean build artifacts
+    cmds:
+      - rm -rf .next
+      - rm -rf node_modules
+      - yarn cache clean
+
+  rebuild:
+    desc: Perform a full rebuild
+    cmds:
+      - task: clean
+      - task: install
+      - task: build 

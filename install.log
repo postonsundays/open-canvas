@@ -1,0 +1,43 @@
+Open Canvas Installation Log
+=======================
+
+Project Overview:
+- TypeScript/Node.js monorepo using Turborepo
+- Frontend: Next.js web application
+- Backend: LangGraph agents server
+
+Required API Keys:
+1. OpenAI API key (https://platform.openai.com/signup/)
+2. Anthropic API key (https://console.anthropic.com/)
+3. Supabase project URL and anon key (https://supabase.com/dashboard/projects)
+
+Optional API Keys:
+1. Google GenAI API key (https://aistudio.google.com/apikey)
+2. Fireworks AI API key (https://fireworks.ai/login)
+3. Groq AI API key (https://groq.com)
+4. FireCrawl API key (https://firecrawl.dev)
+5. ExaSearch API key (https://exa.ai)
+
+Setup Steps:
+1. Created Taskfile.yml for common development tasks
+2. Created .env files for both web and agents applications
+3. Set non-default port 3456 for web application to avoid conflicts
+
+To Run the Application:
+1. Install dependencies: `task install`
+2. Build the project: `task build`
+3. Start both servers: `task dev`
+   - Agents server will run on port 54367
+   - Web application will run on port 3456
+
+Required Environment Variables:
+1. OPENAI_API_KEY - For content generation
+2. ANTHROPIC_API_KEY - For reflection
+3. NEXT_PUBLIC_SUPABASE_URL - For authentication
+4. NEXT_PUBLIC_SUPABASE_ANON_KEY - For authentication
+
+Notes:
+- The application requires both the agents server and web application to be running
+- Authentication is handled through Supabase
+- LangGraph server must be running for the application to function properly
+- Web application is configured to use port 3456 to avoid conflicts with other local development servers 
